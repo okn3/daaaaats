@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>42F8B4EE-17D7-4320-B330-469A9E319FB7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>daaaaats</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>19401BFEC5D7E5FA4B0A614283049064A2A0A3B3</key>
+		<string>github.com:okunoryo/daaaaats.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>daaaaats.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>19401BFEC5D7E5FA4B0A614283049064A2A0A3B3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:okunoryo/daaaaats.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>19401BFEC5D7E5FA4B0A614283049064A2A0A3B3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>19401BFEC5D7E5FA4B0A614283049064A2A0A3B3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>daaaaats</string>
+		</dict>
+	</array>
+</dict>
+</plist>

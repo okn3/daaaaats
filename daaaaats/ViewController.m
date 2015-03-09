@@ -154,7 +154,7 @@ int luck;
                 score_sum += score;
                 soundSet_o1 = false;
                 dartsCount++;
-                _progress.progress = 0.3333 * dartsCount;
+                _progress.progress += 0.111111;
                 
                 //合計
                 if (dartsCount == 3) {
