@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *score_2;
 @property (weak, nonatomic) IBOutlet UILabel *score_3;
 @property (weak, nonatomic) IBOutlet UIProgressView *progress;
+@property (weak, nonatomic) IBOutlet UILabel *score_guide;
 
 - (IBAction)resetGame:(UIButton *)sender;
 
@@ -29,7 +30,7 @@ SystemSoundID soundID_other2;
 SystemSoundID soundID_other3;
 SystemSoundID soundID_other4;
 SystemSoundID soundID_tin;
-SystemSoundID soundID_heart;
+SystemSoundID soundID_end;
 
 bool soundSet_o1 = false;
 
@@ -37,6 +38,7 @@ int roundCount = 1;
 int dartsCount = 0;
 int score = 0;
 int score_sum;
+int score_total;
 int luck;
 
 
@@ -70,8 +72,8 @@ int luck;
                                             pathForResource:@"throw" ofType:@"mp3"]];
     NSURL* other5 = [NSURL fileURLWithPath:[[NSBundle mainBundle]
                                             pathForResource:@"tin1" ofType:@"mp3"]];
-//    NSURL* other6 = [NSURL fileURLWithPath:[[NSBundle mainBundle]
-//                                            pathForResource:@"heart1" ofType:@"mp3"]];
+    NSURL* other6 = [NSURL fileURLWithPath:[[NSBundle mainBundle]
+                                            pathForResource:@"decision18" ofType:@"mp3"]];
     //効果音登録
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)other, &soundID_other);
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)other1, &soundID_other1);
@@ -79,16 +81,15 @@ int luck;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)other3, &soundID_other3);
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)other4, &soundID_other4);
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)other5, &soundID_tin);
-//    AudioServicesCreateSystemSoundID((__bridge CFURLRef)other6, &soundID_heart);
-    
-    
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)other6, &soundID_end);
     
     //再生
     AudioServicesPlaySystemSound(soundID_other);
     
     //スタートの表示
-    _score_board.text = @"start";
-
+    _score_board.text = @"00";
+    _score_guide.text = @"Game Start";
+    
 }
 
 - (void)accelerometer:(UIAccelerometer *)accelerometer
@@ -97,7 +98,7 @@ int luck;
 //    NSLog(@"x=%f", acceleration.x);
 //    NSLog(@"y=%f", acceleration.y);
 //    NSLog(@"z=%f", acceleration.z);
-    
+    NSMutableArray *score_array = [NSMutableArray array];
 
             //ダーツゲーム
             if (acceleration.y < -0.3){
@@ -105,41 +106,51 @@ int luck;
                 _score_board.text = @"";
                 //乱数調整
                 luck = (int)arc4random_uniform(10)+1;
-                NSLog(@"%d",luck);
+//                NSLog(@"%d",luck);
             }else if(acceleration.y > 0.3 && soundSet_o1 == true){
                 AudioServicesPlaySystemSound(soundID_other4);
                 [NSThread sleepForTimeInterval:0.8];
                 AudioServicesPlaySystemSound(soundID_other1);
                 
                 //得点計算
-                if (acceleration.z < 0.1 && acceleration.z > -0.1){
+                if (acceleration.z < 0.08 && acceleration.z > -0.08){
                     AudioServicesPlaySystemSound(soundID_other2);
                     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
                     score = 25;
+                    _score_guide.text = @"Bull!!";
+                }else if(acceleration.z <= 0.5 && acceleration.z >= -0.5) {
+//                    score = (1 - fabs(acceleration.z)) * 100/5; //素直に計算(10~19)
+                    score = (int)arc4random_uniform(20)+1;
                 }else{
-                    score = (1 - fabs(acceleration.z)) * 100/5; //手ブレを表現
+                    score = 0;
+                    AudioServicesPlaySystemSound(soundID_tin);
                 }
                 
                 //タブル・トリプル
                 if (luck ==1 && score == 25){
                         score = 50;
-                        NSLog(@"Bull's eye");
+                    _score_guide.text = @"It's miracle!";
                 }else if(luck == 1){
                     score *= 3;
-                    NSLog(@"Triple");
+                     _score_guide.text = @"Triple!";
                     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
                 }else if(luck == 2 && score != 25){
                     score *=2;
-                    NSLog(@"Double");
+                     _score_guide.text = @"Double!";
                     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-                }else if(luck == 10){
+                }else if(luck == 10 && score != 25){
                     AudioServicesPlaySystemSound(soundID_tin);
                     score = 0;
+                    _score_guide.text = @"Oh...";
+                }else if(score != 25) {
+                    _score_guide.text = @"good!";
                 }
-            
+                
                 _score_board.text = [NSString stringWithFormat:@"%d ", score];
                 NSLog(@"score:%d",score);
                 NSLog(@"count:%d",dartsCount);
+                [score_array addObject:@(score)];
+                
                 score_sum += score;
                 soundSet_o1 = false;
                 dartsCount++;
@@ -147,10 +158,18 @@ int luck;
                 
                 //合計
                 if (dartsCount == 3) {
-//                    sleep(1);
+                    sleep(1);
+                    score_total += score_sum;
                     AudioServicesPlaySystemSound(1311);
                     AudioServicesPlaySystemSound(soundID_other3);
                     NSLog(@"score_sum:%d",score_sum);
+                    if (score_sum > 60) {
+                        _score_guide.text = @"(*^v^)/ < Great!";
+                    }else if (score_sum >40 ){
+                        _score_guide.text = @"(・∀・)< good";
+                    }else{
+                        _score_guide.text = @"(*_*)< bad..";
+                    }
                     switch (roundCount) {
                         case 1:
                             _score_1.text = [NSString stringWithFormat:@"%d. %d",roundCount, score_sum ];
@@ -169,8 +188,11 @@ int luck;
 
                     //終了処理
                     if (roundCount == 4) {
-                        _score_board.text = @"END";
-                        
+                        AudioServicesPlaySystemSound(soundID_end);
+                        _score_board.text = [NSString stringWithFormat:@"%d",score_total];
+                        _score_guide.text = @"Reslut score";
+                        roundCount = 1;
+                        score_total = 0;
                     }
                     
                 }

@@ -24,6 +24,8 @@
 		79E8D4B81AAD4E4400C8A005 /* darts.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E8D4B71AAD4E4400C8A005 /* darts.png */; };
 		79E8D4BB1AAD6EFD00C8A005 /* throw.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 79E8D4BA1AAD6EFD00C8A005 /* throw.mp3 */; };
 		79E8D4BD1AAD72F600C8A005 /* tin1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 79E8D4BC1AAD72F600C8A005 /* tin1.mp3 */; };
+		79E8D4C11AADB4D800C8A005 /* rank.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E8D4C01AADB4D800C8A005 /* rank.png */; };
+		79E8D4C31AADBBA600C8A005 /* decision18.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 79E8D4C21AADBBA600C8A005 /* decision18.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		79E8D4B91AAD55C400C8A005 /* smbfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = smbfont.ttf; path = ../../../../Downloads/smbfont.ttf; sourceTree = "<group>"; };
 		79E8D4BA1AAD6EFD00C8A005 /* throw.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = throw.mp3; path = ../../../../Downloads/throw.mp3; sourceTree = "<group>"; };
 		79E8D4BC1AAD72F600C8A005 /* tin1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tin1.mp3; path = ../../../../Downloads/tin1.mp3; sourceTree = "<group>"; };
+		79E8D4C01AADB4D800C8A005 /* rank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rank.png; path = ../../../../Desktop/rank.png; sourceTree = "<group>"; };
+		79E8D4C21AADBBA600C8A005 /* decision18.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = decision18.mp3; path = ../../../../Downloads/decision18.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,8 @@
 		79E8D49E1AAB1B0100C8A005 /* files */ = {
 			isa = PBXGroup;
 			children = (
+				79E8D4C21AADBBA600C8A005 /* decision18.mp3 */,
+				79E8D4C01AADB4D800C8A005 /* rank.png */,
 				79E8D4BC1AAD72F600C8A005 /* tin1.mp3 */,
 				79E8D4BA1AAD6EFD00C8A005 /* throw.mp3 */,
 				79E8D4B71AAD4E4400C8A005 /* darts.png */,
@@ -244,9 +250,11 @@
 				79E8D4821AAB1ADB00C8A005 /* Main.storyboard in Resources */,
 				79E8D49D1AAB1AF800C8A005 /* single_bull.mp3 in Resources */,
 				79E8D4B81AAD4E4400C8A005 /* darts.png in Resources */,
+				79E8D4C11AADB4D800C8A005 /* rank.png in Resources */,
 				79E8D4871AAB1ADB00C8A005 /* LaunchScreen.xib in Resources */,
 				79E8D4A61AAB1B3300C8A005 /* darts_normal.mp3 in Resources */,
 				79E8D4A51AAB1B3300C8A005 /* change.mp3 in Resources */,
+				79E8D4C31AADBBA600C8A005 /* decision18.mp3 in Resources */,
 				79E8D4BD1AAD72F600C8A005 /* tin1.mp3 in Resources */,
 				79E8D4A41AAB1B3300C8A005 /* decision26.mp3 in Resources */,
 				79E8D4841AAB1ADB00C8A005 /* Images.xcassets in Resources */,
